@@ -1,0 +1,96 @@
+.menu-btn {
+	min-width: 100%;
+	max-width: 100%;
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.btn-image:active{
+	top: 2px;
+	left: 2px;
+}
+
+.menu-btn > label{
+	margin-top: 0.3em;
+	color: #dfdfdf;
+	max-width: 150%;
+	text-align: center;
+	display: block;
+}
+
+.btn-image{
+	position: relative;
+	line-height: 0;
+	width: 100%;
+	border-radius: 50%;
+	
+	border: solid 0.2em #dfdfdf;
+	cursor: pointer;
+	user-select: none;
+	pointer-events: auto;
+}
+
+.btn-image::after{
+	content: '';
+	display: block;
+	padding-top: 100%;
+	pointer-events: none;
+}
+
+.btn-image:hover{
+	border: solid 0.3em #dfdfdf;
+}
+
+.btn-image > img {
+	position: absolute;
+	top: 15%;
+	left: 15%;
+	width: 70%;
+	height: 70%;
+}
+
+
+
+@media (hover:hover){
+	.menu-btn[data-tooltip]:not(:active)::before{
+		display: flex;
+		min-width: max-content;
+		pointer-events: none;
+		text-align: start;
+		background-color: #131313a0;
+		content: attr(data-tooltip);
+		color: #dfdfdf;
+		padding: 0.5em 1em;
+	
+		transition: all 0.15s ease-out,
+					opacity 0.15s ease-in;
+	
+		position: absolute;
+		top: 0;
+		opacity: 0;
+	}
+	
+	.right-menu-btn[data-tooltip]::before{
+		border-radius: 0.3em 1em 1em 0.3em;
+		right: 100%;
+	}
+	
+	.left-menu-btn[data-tooltip]::before{
+		border-radius: 1em 0.3em 0.3em 1em;
+		left: 100%;
+	}
+	
+	.menu-btn[data-tooltip]:hover::before{
+		opacity: 1;
+	}
+	
+	.right-menu-btn[data-tooltip]:hover::before{
+		right: calc(100% + 1em);
+	}
+	
+	.left-menu-btn[data-tooltip]:hover::before{
+		left: calc(100% + 1em);
+	}
+}

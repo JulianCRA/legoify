@@ -1,18 +1,11 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 
-export class App extends Component {
-	static propTypes = {
-		'name' : PropTypes.string
-	}
+import Legoify from './components/Legoify'
 
-	render() {
-		return (
-			<React.Fragment>
-				Welcome back, {this.props.name}
-			</React.Fragment>
-		)
-	}
+const App = () => {
+	return (
+		<Legoify />
+	)
 }
 
 export default App
