@@ -12,7 +12,7 @@ const legoSketch = p => {
 	p.setup = () => {
 		console.log("SETUP")
 		canvas = p.createCanvas(p._userNode.clientWidth, p._userNode.clientHeight)
-		p.background(120)
+		// p.background(120)
 	}
 
 	p.customRedraw = (config) => {
