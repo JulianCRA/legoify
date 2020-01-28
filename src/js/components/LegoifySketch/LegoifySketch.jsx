@@ -11,7 +11,6 @@ const LegoifySketch = ({config}) => {
 	// 		onSketchReady: PropTypes.func.isRequired
 	// 	}).isRequired
 	// }
-
 	return (
 		<P5Wrapper 
 			sketch={legoSketch} 

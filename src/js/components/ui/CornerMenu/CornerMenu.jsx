@@ -20,14 +20,14 @@ const CornerMenu = ({elements, position}) => {
 						image = {element.image}
 						action = {element.action}
 						position = {position}
-						key = {element.label}>
-					</RoundButton>
+						key = {element.label}
+					/>
 				)
 			case "range":
 				return(
 					<RoundSlider 
 						action = {element.action}
-						hidden={!openMenu}
+						hidden = {!openMenu}
 						tooltip = {element.tooltip}
 						label = {element.label}
 						image = {element.image}
@@ -36,8 +36,8 @@ const CornerMenu = ({elements, position}) => {
 						step = {element.step}
 						value = {element.value}
 						position={position}
-						key = {element.label}>
-					</RoundSlider>
+						key = {element.label}
+					/>
 				)
 		}
 	})

@@ -3,12 +3,12 @@ import classNames from 'classnames'
 
 import styles from './RoundButton.module.css'
 
-const RoundButton = ({tooltip, label, image, action, position}) => {
+const RoundButton = ({tooltip, label, image, action, position, showTooltip = true}) => {
 	const cn = classNames(
 		styles.roundButton,
 		{
-			[styles.toRightTooltip] : position.toRight,
-			[styles.toLeftTooltip] : position.toLeft
+			[styles.toRightTooltip] : showTooltip && position.toRight,
+			[styles.toLeftTooltip] : showTooltip && position.toLeft
 		}
 	)
 		

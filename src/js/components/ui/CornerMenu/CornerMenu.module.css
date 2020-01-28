@@ -32,9 +32,15 @@
 }
 
 .button-container > *{
-	display: inline-block;
 	transform: none;
 	transition: all 0.6s ease-out;
+}
+
+.from-top > .button-container > *{
+	margin-bottom: 10px;
+}
+.from-bottom > .button-container > *{
+	margin-top: 10px;
 }
 
 .from-top > .closed-menu{
@@ -53,8 +59,10 @@
 
 .from-top > .closed-menu > *{
 	margin-top: -100%;
+	margin-bottom: 0;
 }
 
 .from-bottom > .closed-menu > *{
 	margin-bottom: -100%;
+	margin-top: 0;
 }

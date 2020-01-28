@@ -2,19 +2,34 @@ import React from 'react'
 
 import LegoifySketch from '../LegoifySketch'
 import LegoifyMenu from '../LegoifyMenu'
+import ImageReader from '../ImageReader'
+import actions from '../utils/actions'
 
 import styles from './Legoify.module.css'
 
+
 const Legoify = () => {
-	const setAction = a => console.log("ACTION:", a)
+	const [action, setAction] = React.useState(actions._DISPLAY_READER)
+
+	const [link, setLink] = React.useState()
+
+	const updateLink = link => {
+		setLink(link)
+		setAction(actions._DISPLAY_SKETCH)
+	}
+
+	const updateAction = a => {
+		console.log(a);
+	}
+	
+	const content = (action === actions._DISPLAY_READER) ?
+		<ImageReader onImageLinkCreated = { updateLink } /> : 
+		<LegoifySketch config = {{ action:action, link:link }} />
+
 	return(
 		<div className = {styles.legoifyContainer}>
-			<LegoifySketch 
-				config = {{
-					action: "INITIALIZE"
-				}}
-			/>
-			<LegoifyMenu setAction={setAction} />
+			{ content }
+			<LegoifyMenu update = {updateAction} />
 		</div>
 	)
 }
