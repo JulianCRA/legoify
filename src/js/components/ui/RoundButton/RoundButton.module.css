@@ -1,4 +1,4 @@
-.menu-btn {
+.round-button {
 	min-width: 100%;
 	max-width: 100%;
 	position: relative;
@@ -7,20 +7,22 @@
 	flex-direction: column;
 }
 
-.btn-image:active{
+.button-image:active{
 	top: 2px;
 	left: 2px;
 }
 
-.menu-btn > label{
+.round-button > label{
 	margin-top: 0.3em;
 	color: #dfdfdf;
 	max-width: 150%;
 	text-align: center;
 	display: block;
+	user-select: none;
+	cursor: pointer;
 }
 
-.btn-image{
+.button-image{
 	position: relative;
 	line-height: 0;
 	width: 100%;
@@ -32,18 +34,18 @@
 	pointer-events: auto;
 }
 
-.btn-image::after{
+.button-image::after{
 	content: '';
 	display: block;
 	padding-top: 100%;
 	pointer-events: none;
 }
 
-.btn-image:hover{
+.button-image:hover{
 	border: solid 0.3em #dfdfdf;
 }
 
-.btn-image > img {
+.button-image > img {
 	position: absolute;
 	top: 15%;
 	left: 15%;
@@ -54,7 +56,7 @@
 
 
 @media (hover:hover){
-	.menu-btn[data-tooltip]:not(:active)::before{
+	.round-button[data-tooltip]:not(:active)::before{
 		display: flex;
 		min-width: max-content;
 		pointer-events: none;
@@ -68,29 +70,33 @@
 					opacity 0.15s ease-in;
 	
 		position: absolute;
-		top: 0;
+		top: calc(50% - 1.5em);
 		opacity: 0;
 	}
 	
-	.right-menu-btn[data-tooltip]::before{
+	.to-left-tooltip[data-tooltip]::before{
 		border-radius: 0.3em 1em 1em 0.3em;
 		right: 100%;
+		top: calc(50% - 1.5em);
 	}
 	
-	.left-menu-btn[data-tooltip]::before{
+	.to-right-tooltip[data-tooltip]::before{
 		border-radius: 1em 0.3em 0.3em 1em;
 		left: 100%;
+		top: calc(50% - 1.5em);
 	}
 	
-	.menu-btn[data-tooltip]:hover::before{
+	.round-button[data-tooltip]:hover::before{
 		opacity: 1;
 	}
 	
-	.right-menu-btn[data-tooltip]:hover::before{
+	.to-left-tooltip[data-tooltip]:hover::before{
 		right: calc(100% + 1em);
+		top: calc(50% - 1.5em);
 	}
 	
-	.left-menu-btn[data-tooltip]:hover::before{
+	.to-right-tooltip[data-tooltip]:hover::before{
 		left: calc(100% + 1em);
+		top: calc(50% - 1.5em);
 	}
 }

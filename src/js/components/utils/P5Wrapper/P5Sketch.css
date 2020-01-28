@@ -5,7 +5,7 @@
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	z-index: 5;
+	/* z-index: 5; */
 }
 
 #p5_loading {
