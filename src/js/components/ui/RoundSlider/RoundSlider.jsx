@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import generalStyles from '../RoundButton/RoundButton.module.css'
 import styles from './RoundSlider.module.css'
 
-const RoundSlider = ({tooltip, label, image, hidden, min, max, value, step, position, action}) => {
+const RoundSlider = ({tooltip, label, image, hidden, min, max, value, step, position, action, small = false}) => {
 	const [isSliderActive, toggleSlider] = React.useState(false)
 
 	if(hidden && isSliderActive) toggleSlider(false)
@@ -13,6 +13,7 @@ const RoundSlider = ({tooltip, label, image, hidden, min, max, value, step, posi
 		generalStyles.roundButton,
 		styles.menuSlider,
 		{
+			[generalStyles.smallButton] : small,
 			[styles.menuSliderHidden] : !isSliderActive,
 		}
 	)

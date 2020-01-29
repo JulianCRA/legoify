@@ -2,11 +2,12 @@
 	--slider-height : 1em;
 	--slider-thumb-width: 1.5em;
 }
+
 .menu-slider > .slider-bg{
 	width: 40vw;
 	max-width: 400%;
 	position: absolute;
-	bottom: calc(50% - 0.75em + var(--slider-height)*0.3);	
+	top: calc( 50% - var(--slider-height) * 1.25);
 }
 
 .deploy-to-right{

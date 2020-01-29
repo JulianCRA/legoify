@@ -12,12 +12,19 @@ import loadImage 		from './assets/buttons/load.svg'
 import scrambleImage 	from './assets/buttons/scramble.svg'
 
 const LegoifyMenu = ({update}) => {
+	const width  = window.innerWidth || document.documentElement.clientWidth || 
+	document.body.clientWidth;
+	const height = window.innerHeight|| document.documentElement.clientHeight|| 
+	document.body.clientHeight;
+
+	console.log(width, height);
 	
 	const elements = [
 		{
 			type : "button",
 			tooltip : "Save the lego board to a file.",
-			label : "SAVE",
+			// label : "SAVE",
+			label: width+" "+height,
 			image : downloadImage,
 			action : () => update({action : actions._SAVE})
 		},
@@ -49,7 +56,7 @@ const LegoifyMenu = ({update}) => {
 			action : () => update({action : actions._LEGOIFY})
 		}
 	]
-
+	
 	return(
 		<div className = {styles.legoifyMenu}>
 			<CornerMenu 

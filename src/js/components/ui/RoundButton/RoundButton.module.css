@@ -34,15 +34,19 @@
 	pointer-events: auto;
 }
 
+.small-button > label{
+	display:none
+}
+
+.small-button > .button-image{
+	border: solid 0.1em #dfdfdf;
+}
+
 .button-image::after{
 	content: '';
 	display: block;
 	padding-top: 100%;
 	pointer-events: none;
-}
-
-.button-image:hover{
-	border: solid 0.3em #dfdfdf;
 }
 
 .button-image > img {
@@ -56,6 +60,11 @@
 
 
 @media (hover:hover){
+
+	.button-image:hover{
+		border: solid 0.3em #dfdfdf;
+	}
+
 	.round-button[data-tooltip]:not(:active)::before{
 		display: flex;
 		min-width: max-content;
