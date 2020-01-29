@@ -17,7 +17,7 @@ const LegoifyMenu = ({update}) => {
 		{
 			type : "button",
 			tooltip : "Save the lego board to a file.",
-			label : "DOWNLOAD",
+			label : "SAVE",
 			image : downloadImage,
 			action : () => update({action : actions._SAVE})
 		},
@@ -44,7 +44,7 @@ const LegoifyMenu = ({update}) => {
 		},
 		{
 			type : "button",
-			label : "LEGO IT!",
+			label : "LEGOIFY",
 			image : legoifyImage,
 			action : () => update({action : actions._LEGOIFY})
 		}

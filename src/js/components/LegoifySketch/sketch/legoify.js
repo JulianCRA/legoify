@@ -2,34 +2,35 @@ import LegoBoard from './LegoBoard'
 
 const legoSketch = p => {
 
-	let hasImageLoaded
 	let sourceImage
-	let legoifiedImage
+	
 	let pixelMap
 	let board
+	let legoifiedImage
 	let brickSize
+
+	let animation
+	let index
 	const maxBricks = 50
 	const minSize = 20
 
-	p.preload = () => {console.log("PRELOAD")}
+	p.preload = () => {}
 	p.setup = () => {
-		console.log("SETUP")
 		p.createCanvas(p._userNode.clientWidth, p._userNode.clientHeight)
 		p.noLoop()
 		p.imageMode(p.CENTER)
-		p.translate(p.width * 0.5, p.height * 0.5)
-		// p.background(120)
 
-		hasImageLoaded = false
+		animation = false
+	}
+	p.draw = () => {
+		if(animation)
+			brickByBrick()
 	}
 
 	p.customRedraw = (config) => {
-		console.log("CUSTOM")
-		console.log('config', config)
-		console.log('config.action', config.action)
 		switch(config.action){
-			case "download":
-				console.log(" TODO: sketch.save()")
+			case "SAVE":
+				save()
 			break
 			case "DISPLAY_SKETCH":
 				loadNewImage(config.link)
@@ -37,8 +38,8 @@ const legoSketch = p => {
 			case "SHUFFLE":
 				shuffle()
 			break
-			case "animate":
-				console.log(" TODO: sketch.animate()")
+			case "ANIMATE":
+				animate()
 			break
 			case "LEGOIFY":
 				legoify()
@@ -46,8 +47,19 @@ const legoSketch = p => {
 		}
 	}
 
+	const save = () => {
+		p.saveCanvas(legoifiedImage, 'legoified.png')
+	}
+
+	const animate = () => {
+		p.loop()
+		p.clear()
+		legoifiedImage.clear()
+		index = 0
+		animation = true
+	}
+
 	const shuffle = () => {
-		console.log("SHUFFF")
 		board.reset()
 		board.fillGrid()
 		legoify()
@@ -59,7 +71,27 @@ const legoSketch = p => {
 		board.bricks.map(
 			brick => drawBrick(legoifiedImage, brick)
 		)
-		p.image(legoifiedImage, 0, 0)
+		displayLegoified()
+	}
+
+	const loadNewImage = source => {
+		sourceImage = p.loadImage( source, displayNewImage)
+	}
+
+	const brickByBrick = () => {
+		const bricksAmount = Math.ceil(board.bricks.length / 100)
+		
+		for(let i = 0; i < bricksAmount; i++){
+			if(index < board.bricks.length)
+				drawBrick(legoifiedImage, board.bricks[index])
+			else{
+				p.noLoop()
+				animation = false
+			}
+			index++
+		}
+		
+		displayLegoified()
 	}
 
 	const displayNewImage = () => {
@@ -67,26 +99,29 @@ const legoSketch = p => {
 		const newWidth = sourceImage.width * ratio
 		const newHeight = sourceImage.height * ratio
 
-		p.image(sourceImage, 0, 0, newWidth, newHeight)
+		p.image(sourceImage, p.width * 0.5, p.height * 0.5, newWidth, newHeight)
 
 		brickSize =  Math.min(Math.floor(Math.max(newWidth, newHeight) / maxBricks), minSize)
 		const gridWidth = Math.floor(newWidth / brickSize)
 		const gridHeight = Math.floor(newHeight / brickSize)
 		board = new LegoBoard(gridWidth, gridHeight, sourceImage)
 
-		legoifiedImage = p.createGraphics(gridWidth * brickSize, gridHeight * brickSize)
-		legoifiedImage.background("black")
-
 		pixelMap = p.createGraphics(board.width, board.height)
 		pixelMap.image(sourceImage, 0, 0, pixelMap.width, pixelMap.height)
 		pixelMap.loadPixels()
 
-		hasImageLoaded = true
+		legoifiedImage = p.createGraphics(gridWidth * brickSize, gridHeight * brickSize)
+		board.bricks.map(
+			brick => drawBrick(legoifiedImage, brick)
+		)
 	}
 
-	const loadNewImage = source => {
-		hasImageLoaded = false
-		sourceImage = p.loadImage( source, displayNewImage)
+	const displayLegoified = () => {
+		p.clear()
+		p.push()
+		p.translate(p.width * 0.5, p.height * 0.5)
+		p.image(legoifiedImage, 0, 0)
+		p.pop()
 	}
 
 	const drawBrick = (canvas, brick) => {
