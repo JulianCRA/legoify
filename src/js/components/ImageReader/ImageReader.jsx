@@ -8,7 +8,7 @@ class ImageReader extends React.PureComponent{
 		onImageLinkCreated: PropTypes.func.isRequired,
 	}
 
-	constructor(){
+	constructor({startOpen}){
 		super();
 		this.state = {
 			label: "Your image here",
@@ -18,10 +18,15 @@ class ImageReader extends React.PureComponent{
 		this.handleDrop = this.handleDrop.bind(this)
 		this.handleClick = this.handleClick.bind(this)
 		this.setImage = this.setImage.bind(this)
+
+		if(startOpen) this.handleClick()
 	}
 
 	handleClick(){
-		let input = document.createElement("input")
+		let input = document.getElementById("imageInput") || document.createElement("input")
+		
+		input.setAttribute("id", "imageInput")
+		input.style.display = "none"
 		input.setAttribute("type", "file")
 		input.setAttribute("accept", "image/jpeg,image/png,image/jpg,.jpeg,.png,.jpg")
 		input.onchange = e => {

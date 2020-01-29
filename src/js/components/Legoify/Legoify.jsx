@@ -7,24 +7,31 @@ import actions from '../utils/actions'
 
 import styles from './Legoify.module.css'
 
-
 const Legoify = () => {
-	const [action, setAction] = React.useState(actions._DISPLAY_READER)
-
-	const [link, setLink] = React.useState()
+	const [config, setConfig] = React.useState({
+		action: actions._DISPLAY_READER,
+		link: null
+	})
 
 	const updateLink = link => {
-		setLink(link)
-		setAction(actions._DISPLAY_SKETCH)
+		setConfig({
+			action: actions._DISPLAY_SKETCH,
+			link: link
+		})
 	}
 
 	const updateAction = a => {
-		console.log(a);
+		if(config.link){
+			setConfig({
+				...config, 
+				action: a.action
+			})
+		}
 	}
-	
-	const content = (action === actions._DISPLAY_READER) ?
-		<ImageReader onImageLinkCreated = { updateLink } /> : 
-		<LegoifySketch config = {{ action:action, link:link }} />
+
+	const content = (config.action === actions._DISPLAY_READER) ?
+		<ImageReader onImageLinkCreated = { updateLink } startOpen = { config.link !== null }/> : 
+		<LegoifySketch config = {config} />
 
 	return(
 		<div className = {styles.legoifyContainer}>
