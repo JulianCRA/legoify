@@ -12,13 +12,10 @@ import loadImage 		from './assets/buttons/load.svg'
 import scrambleImage 	from './assets/buttons/scramble.svg'
 
 const LegoifyMenu = ({update}) => {
-	const width  = window.innerWidth || document.documentElement.clientWidth || 
-	document.body.clientWidth;
-	const height = window.innerHeight|| document.documentElement.clientHeight|| 
-	document.body.clientHeight;
+	const height =  window.innerHeight || 
+					document.documentElement.clientHeight || 
+					document.body.clientHeight
 
-	console.log(width, height);
-	
 	const elements = [
 		{
 			type : "button",

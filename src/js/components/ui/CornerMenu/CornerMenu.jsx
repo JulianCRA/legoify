@@ -8,7 +8,7 @@ import CircularMenuToggler from '../CircularMenuToggler'
 import styles from './CornerMenu.module.css'
 
 const CornerMenu = ({elements, position}) => {
-	const [openMenu, setOpenMenu] = React.useState(true)
+	const [openMenu, setOpenMenu] = React.useState(false)
 
 	const buttons = elements.map(element => {
 		switch(element.type){
