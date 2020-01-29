@@ -23,9 +23,9 @@ const LegoifyMenu = ({update}) => {
 		{
 			type : "button",
 			tooltip : "Save the lego board to a file.",
-			// label : "SAVE",
-			label: width+" "+height,
+			label : "SAVE",
 			image : downloadImage,
+			small : height < 500,
 			action : () => update({action : actions._SAVE})
 		},
 		{
@@ -33,6 +33,7 @@ const LegoifyMenu = ({update}) => {
 			tooltip : "Load another image.",
 			label : "LOAD",
 			image : loadImage,
+			small : height < 500,
 			action : () => update({action : actions._DISPLAY_READER})
 		},
 		{
@@ -40,6 +41,7 @@ const LegoifyMenu = ({update}) => {
 			tooltip : "Change the disposition of the lego bricks",
 			label : "SHUFFLE",
 			image : scrambleImage,
+			small : height < 500,
 			action : () => update({action : actions._SHUFFLE})
 		},
 		{
@@ -47,12 +49,14 @@ const LegoifyMenu = ({update}) => {
 			tooltip : "Watch as the triangles are placed progressively.",
 			label : "ANIMATE",
 			image : animationImage,
+			small : height < 500,
 			action : () => update({action : actions._ANIMATE})
 		},
 		{
 			type : "button",
 			label : "LEGOIFY",
 			image : legoifyImage,
+			small : height < 500,
 			action : () => update({action : actions._LEGOIFY})
 		}
 	]

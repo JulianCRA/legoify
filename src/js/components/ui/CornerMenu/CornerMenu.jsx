@@ -21,6 +21,7 @@ const CornerMenu = ({elements, position}) => {
 						action = {element.action}
 						position = {position}
 						key = {element.label}
+						small = {element.small}
 					/>
 				)
 			case "range":
@@ -37,6 +38,7 @@ const CornerMenu = ({elements, position}) => {
 						value = {element.value}
 						position={position}
 						key = {element.label}
+						small = {element.small}
 					/>
 				)
 		}

@@ -9,10 +9,6 @@
 	.legoify-menu{
 		width: 40px;
 	}
-
-	.vertical-menu > * > label{
-		display: none;
-	}
 }
 
 @media screen and (min-height:501px) and (max-height:800px){
