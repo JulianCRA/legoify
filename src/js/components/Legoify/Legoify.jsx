@@ -10,7 +10,8 @@ import styles from './Legoify.module.css'
 const Legoify = () => {
 	const [config, setConfig] = React.useState({
 		action: actions._DISPLAY_READER,
-		link: null
+		link: null,
+		openMenu: false
 	})
 
 	const updateLink = link => {
@@ -24,13 +25,15 @@ const Legoify = () => {
 		if(config.link){
 			setConfig({
 				...config, 
+				link : a.action === actions._DISPLAY_READER ? null : config.link,
+				openMenu : a.action === actions._DISPLAY_READER,
 				action: a.action
 			})
 		}
 	}
 
 	const content = (config.action === actions._DISPLAY_READER) ?
-		<ImageReader onImageLinkCreated = { updateLink } startOpen = { config.link !== null }/> : 
+		<ImageReader onImageLinkCreated = { updateLink } startOpen = { config.openMenu }/> : 
 		<LegoifySketch config = {config} />
 
 	return(
